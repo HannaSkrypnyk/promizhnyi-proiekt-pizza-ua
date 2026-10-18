@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ER-діаграма: продажі піцерії</title>
+<style>
+  :root {
+    --blue:   #2e5a87;
+    --navy:   #1f2d3d;
+    --gray:   #6b6b6b;
+    --orange: #f28e2b;
+  }
+  body {
+    margin: 0;
+    padding: 24px;
+    background: #ffffff;
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    color: var(--navy);
+  }
+  .bar {
+    max-width: 1600px;
+    margin: 0 auto 16px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hint { font-size: 14px; color: var(--gray); }
+  button {
+    font: inherit;
+    font-weight: 600;
+    color: #ffffff;
+    background: var(--blue);
+    border: none;
+    border-radius: 4px;
+    padding: 11px 20px;
+    cursor: pointer;
+  }
+  button:hover { background: var(--navy); }
+  button:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+  .sheet {
+    max-width: 1600px;
+    margin: 0 auto;
+    border: 1px solid #d8dde3;
+  }
+  svg { display: block; width: 100%; height: auto; }
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <span class="hint">Натисніть кнопку — файл er-diagram.png збережеться в папку завантажень.</span>
+  <button id="dl">Завантажити PNG</button>
+</div>
+
+<div class="sheet">
+<svg id="er" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900"
+     font-family="Segoe UI, Tahoma, Arial, sans-serif">
+
+  <rect x="0" y="0" width="1600" height="900" fill="#ffffff"/>
+
+  <!-- ЗАГОЛОВОК -->
+  <text x="800" y="58" text-anchor="middle" font-size="36" font-weight="700" fill="#1f2d3d">ER-діаграма: продажі піцерії (Pizza Place Sales, 2015)</text>
+  <text x="800" y="92" text-anchor="middle" font-size="19" fill="#6b6b6b">4 таблиці бази SQLite. Таблиця фактів order_details — у центрі</text>
+
+  <!-- ====================== ТАБЛИЦЯ orders ====================== -->
+  <g>
+    <rect x="80" y="230" width="340" height="196" rx="6" fill="#ffffff" stroke="#2e5a87" stroke-width="2"/>
+    <path d="M80 236 a6 6 0 0 1 6 -6 h328 a6 6 0 0 1 6 6 v44 h-340 z" fill="#1f2d3d"/>
+    <text x="100" y="263" font-size="20" font-weight="700" fill="#ffffff">orders</text>
+    <text x="400" y="263" font-size="14" text-anchor="end" fill="#ffffff" opacity="0.65">21 350 рядків</text>
+
+    <rect x="80" y="280" width="340" height="36" fill="#eef3f8"/>
+    <text x="100" y="304" font-size="18" font-weight="700" fill="#2e5a87">order_id</text>
+    <rect x="260" y="288" width="32" height="20" rx="4" fill="#2e5a87"/>
+    <text x="276" y="303" font-size="11" text-anchor="middle" font-weight="700" fill="#ffffff">PK</text>
+    <text x="400" y="304" font-size="14" text-anchor="end" fill="#6b6b6b">INTEGER</text>
+
+    <text x="100" y="340" font-size="18" fill="#1f2d3d">date</text>
+    <text x="400" y="340" font-size="14" text-anchor="end" fill="#6b6b6b">TEXT (YYYY-MM-DD)</text>
+
+    <text x="100" y="376" font-size="18" fill="#1f2d3d">time</text>
+    <text x="400" y="376" font-size="14" text-anchor="end" fill="#6b6b6b">TEXT (HH:MM:SS)</text>
+
+    <line x1="94" y1="396" x2="406" y2="396" stroke="#d8dde3" stroke-width="1"/>
+    <text x="100" y="418" font-size="14" fill="#6b6b6b">одне замовлення клієнта</text>
+  </g>
+
+  <!-- ====================== ТАБЛИЦЯ order_details ====================== -->
+  <g>
+    <rect x="630" y="194" width="340" height="232" rx="6" fill="#ffffff" stroke="#2e5a87" stroke-width="2"/>
+    <path d="M630 200 a6 6 0 0 1 6 -6 h328 a6 6 0 0 1 6 6 v44 h-340 z" fill="#1f2d3d"/>
+    <text x="650" y="227" font-size="20" font-weight="700" fill="#ffffff">order_details</text>
+    <text x="950" y="227" font-size="14" text-anchor="end" fill="#ffffff" opacity="0.65">48 620 рядків</text>
+
+    <rect x="630" y="244" width="340" height="36" fill="#eef3f8"/>
+    <text x="650" y="268" font-size="18" font-weight="700" fill="#2e5a87">order_details_id</text>
+    <rect x="810" y="252" width="32" height="20" rx="4" fill="#2e5a87"/>
+    <text x="826" y="267" font-size="11" text-anchor="middle" font-weight="700" fill="#ffffff">PK</text>
+    <text x="950" y="268" font-size="14" text-anchor="end" fill="#6b6b6b">INTEGER</text>
+
+    <text x="650" y="304" font-size="18" font-weight="700" fill="#f28e2b">order_id</text>
+    <rect x="810" y="288" width="32" height="20" rx="4" fill="#f28e2b"/>
+    <text x="826" y="303" font-size="11" text-anchor="middle" font-weight="700" fill="#ffffff">FK</text>
+    <text x="950" y="304" font-size="14" text-anchor="end" fill="#6b6b6b">INTEGER</text>
+
+    <text x="650" y="340" font-size="18" font-weight="700" fill="#f28e2b">pizza_id</text>
+    <rect x="810" y="324" width="32" height="20" rx="4" fill="#f28e2b"/>
+    <text x="826" y="339" font-size="11" text-anchor="middle" font-weight="700" fill="#ffffff">FK</text>
+    <text x="950" y="340" font-size="14" text-anchor="end" fill="#6b6b6b">TEXT</text>
+
+    <text x="650" y="376" font-size="18" fill="#1f2d3d">quantity</text>
+    <text x="950" y="376" font-size="14" text-anchor="end" fill="#6b6b6b">INTEGER</text>
+
+    <line x1="644" y1="396" x2="956" y2="396" stroke="#d8dde3" stroke-width="1"/>
+    <text x="650" y="418" font-size="14" fill="#6b6b6b">позиції в замовленні: одна піца × кількість</text>
+  </g>
+
+  <!-- ====================== ТАБЛИЦЯ pizzas ====================== -->
+  <g>
+    <rect x="1180" y="266" width="340" height="232" rx="6" fill="#ffffff" stroke="#2e5a87" stroke-width="2"/>
+    <path d="M1180 272 a6 6 0 0 1 6 -6 h328 a6 6 0 0 1 6 6 v44 h-340 z" fill="#1f2d3d"/>
+    <text x="1200" y="299" font-size="20" font-weight="700" fill="#ffffff">pizzas</text>
+    <text x="1500" y="299" font-size="14" text-anchor="end" fill="#ffffff" opacity="0.65">96 рядків</text>
+
+    <rect x="1180" y="316" width="340" height="36" fill="#eef3f8"/>
+    <text x="1200" y="340" font-size="18" font-weight="700" fill="#2e5a87">pizza_id</text>
+    <rect x="1360" y="324" width="32" height="20" rx="4" fill="#2e5a87"/>
+    <text x="1376" y="339" font-size="11" text-anchor="middle" font-weight="700" fill="#ffffff">PK</text>
+    <text x="1500" y="340" font-size="14" text-anchor="end" fill="#6b6b6b">TEXT</text>
+
+    <text x="1200" y="376" font-size="18" font-weight="700" fill="#f28e2b">pizza_type_id</text>
+    <rect x="1360" y="360" width="32" height="20" rx="4" fill="#f28e2b"/>
+    <text x="1376" y="375" font-size="11" text-anchor="middle" font-weight="700" fill="#ffffff">FK</text>
+    <text x="1500" y="376" font-size="14" text-anchor="end" fill="#6b6b6b">TEXT</text>
+
+    <text x="1200" y="412" font-size="18" fill="#1f2d3d">size</text>
+    <text x="1500" y="412" font-size="14" text-anchor="end" fill="#6b6b6b">TEXT (S/M/L/XL/XXL)</text>
+
+    <text x="1200" y="448" font-size="18" fill="#1f2d3d">price</text>
+    <text x="1500" y="448" font-size="14" text-anchor="end" fill="#6b6b6b">REAL</text>
+
+    <line x1="1194" y1="468" x2="1506" y2="468" stroke="#d8dde3" stroke-width="1"/>
+    <text x="1200" y="490" font-size="14" fill="#6b6b6b">одна піца в одному розмірі та її ціна</text>
+  </g>
+
+  <!-- ====================== ТАБЛИЦЯ pizza_types ====================== -->
+  <g>
+    <rect x="1180" y="530" width="340" height="232" rx="6" fill="#ffffff" stroke="#2e5a87" stroke-width="2"/>
+    <path d="M1180 536 a6 6 0 0 1 6 -6 h328 a6 6 0 0 1 6 6 v44 h-340 z" fill="#1f2d3d"/>
+    <text x="1200" y="563" font-size="20" font-weight="700" fill="#ffffff">pizza_types</text>
+    <text x="1500" y="563" font-size="14" text-anchor="end" fill="#ffffff" opacity="0.65">32 рядки</text>
+
+    <rect x="1180" y="580" width="340" height="36" fill="#eef3f8"/>
+    <text x="1200" y="604" font-size="18" font-weight="700" fill="#2e5a87">pizza_type_id</text>
+    <rect x="1360" y="588" width="32" height="20" rx="4" fill="#2e5a87"/>
+    <text x="1376" y="603" font-size="11" text-anchor="middle" font-weight="700" fill="#ffffff">PK</text>
+    <text x="1500" y="604" font-size="14" text-anchor="end" fill="#6b6b6b">TEXT</text>
+
+    <text x="1200" y="640" font-size="18" fill="#1f2d3d">name</text>
+    <text x="1500" y="640" font-size="14" text-anchor="end" fill="#6b6b6b">TEXT</text>
+
+    <text x="1200" y="676" font-size="18" fill="#1f2d3d">category</text>
+    <text x="1500" y="676" font-size="14" text-anchor="end" fill="#6b6b6b">TEXT</text>
+
+    <text x="1200" y="712" font-size="18" fill="#1f2d3d">ingredients</text>
+    <text x="1500" y="712" font-size="14" text-anchor="end" fill="#6b6b6b">TEXT</text>
+
+    <line x1="1194" y1="732" x2="1506" y2="732" stroke="#d8dde3" stroke-width="1"/>
+    <text x="1200" y="754" font-size="14" fill="#6b6b6b">назва піци, категорія, склад</text>
+  </g>
+
+  <!-- ============ ЗВ'ЯЗОК 1: orders.order_id → order_details.order_id ============ -->
+  <g stroke="#f28e2b" stroke-width="2.5" fill="none">
+    <line x1="420" y1="298" x2="630" y2="298"/>
+    <line x1="436" y1="284" x2="436" y2="312"/>
+    <line x1="614" y1="298" x2="630" y2="284"/>
+    <line x1="614" y1="298" x2="630" y2="312"/>
+    <line x1="600" y1="284" x2="600" y2="312"/>
+  </g>
+  <text x="525" y="280" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2d3d">1 : N</text>
+  <text x="525" y="332" text-anchor="middle" font-size="14" fill="#6b6b6b">order_id</text>
+
+  <!-- ============ ЗВ'ЯЗОК 2: order_details.pizza_id → pizzas.pizza_id ============ -->
+  <g stroke="#f28e2b" stroke-width="2.5" fill="none">
+    <line x1="970" y1="334" x2="1180" y2="334"/>
+    <line x1="986" y1="334" x2="970" y2="320"/>
+    <line x1="986" y1="334" x2="970" y2="348"/>
+    <line x1="1000" y1="320" x2="1000" y2="348"/>
+    <line x1="1164" y1="320" x2="1164" y2="348"/>
+  </g>
+  <text x="1075" y="316" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2d3d">N : 1</text>
+  <text x="1075" y="368" text-anchor="middle" font-size="14" fill="#6b6b6b">pizza_id</text>
+
+  <!-- ============ ЗВ'ЯЗОК 3: pizzas.pizza_type_id → pizza_types.pizza_type_id ============ -->
+  <g stroke="#f28e2b" stroke-width="2.5" fill="none">
+    <path d="M1520 376 H1562 V598 H1520"/>
+    <line x1="1536" y1="376" x2="1520" y2="362"/>
+    <line x1="1536" y1="376" x2="1520" y2="390"/>
+    <line x1="1548" y1="362" x2="1548" y2="390"/>
+    <line x1="1536" y1="584" x2="1536" y2="612"/>
+  </g>
+  <text x="1588" y="487" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2d3d" transform="rotate(-90 1588 487)">N : 1</text>
+  <text x="1506" y="519" text-anchor="end" font-size="14" fill="#6b6b6b">pizza_type_id</text>
+
+  <!-- ====================== ЗВ'ЯЗКИ ====================== -->
+  <rect x="80" y="560" width="700" height="190" rx="6" fill="#f6f7f9" stroke="#d8dde3" stroke-width="1"/>
+  <text x="106" y="596" font-size="18" font-weight="700" fill="#1f2d3d">Зв'язки</text>
+
+  <text x="106" y="638" font-size="15" fill="#1f2d3d"><tspan font-weight="700">orders 1 : N order_details</tspan> — одне замовлення містить кілька позицій.</text>
+  <text x="106" y="680" font-size="15" fill="#1f2d3d"><tspan font-weight="700">pizzas 1 : N order_details</tspan> — одна піца трапляється в багатьох позиціях.</text>
+  <text x="106" y="722" font-size="15" fill="#1f2d3d"><tspan font-weight="700">pizza_types 1 : N pizzas</tspan> — одна назва піци існує в кількох розмірах.</text>
+
+  <!-- ====================== ЛЕГЕНДА ====================== -->
+  <rect x="80" y="782" width="1420" height="96" rx="6" fill="#f6f7f9" stroke="#d8dde3" stroke-width="1"/>
+  <text x="106" y="812" font-size="18" font-weight="700" fill="#1f2d3d">Легенда</text>
+
+  <rect x="106" y="838" width="32" height="20" rx="4" fill="#2e5a87"/>
+  <text x="122" y="853" font-size="11" text-anchor="middle" font-weight="700" fill="#ffffff">PK</text>
+  <text x="148" y="853" font-size="15" fill="#1f2d3d">первинний ключ: унікальний номер рядка.</text>
+
+  <rect x="520" y="838" width="32" height="20" rx="4" fill="#f28e2b"/>
+  <text x="536" y="853" font-size="11" text-anchor="middle" font-weight="700" fill="#ffffff">FK</text>
+  <text x="562" y="853" font-size="15" fill="#1f2d3d">зовнішній ключ: посилання на PK іншої таблиці.</text>
+
+  <g stroke="#f28e2b" stroke-width="2.5" fill="none">
+    <line x1="992" y1="848" x2="1056" y2="848"/>
+    <line x1="1004" y1="834" x2="1004" y2="862"/>
+    <line x1="1044" y1="848" x2="1056" y2="834"/>
+    <line x1="1044" y1="848" x2="1056" y2="862"/>
+    <line x1="1032" y1="834" x2="1032" y2="862"/>
+  </g>
+  <text x="1072" y="853" font-size="15" fill="#1f2d3d">crow's foot: риска = «один», лапка ворони = «багато».</text>
+
+</svg>
+</div>
+
+<script>
+  document.getElementById('dl').addEventListener('click', function () {
+    var svg = document.getElementById('er');
+    var scale = 2;                       // PNG у подвійному розмірі: 3200 × 1800
+    var w = 1600, h = 900;
+
+    // 1. Перетворюємо SVG на текст і пакуємо його в адресу картинки
+    var source = new XMLSerializer().serializeToString(svg);
+    var url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(source);
+
+    // 2. Завантажуємо цей текст як звичайну картинку
+    var img = new Image();
+    img.onload = function () {
+      // 3. Малюємо картинку на полотні canvas
+      var canvas = document.createElement('canvas');
+      canvas.width = w * scale;
+      canvas.height = h * scale;
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      // 4. Полотно віддає PNG, а посилання одразу його зберігає
+      var a = document.createElement('a');
+      a.download = 'er-diagram.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    };
+    img.onerror = function () {
+      alert('PNG не створився. Відкрийте файл у Chrome, Edge або Firefox.');
+    };
+    img.src = url;
+  });
+</script>
+
+</body>
+</html>
